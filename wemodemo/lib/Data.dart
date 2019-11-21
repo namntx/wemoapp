@@ -6,7 +6,7 @@ class WemoApp extends StatefulWidget {
   //
   WemoApp() : super();
  
-  final String title = 'Flutter Data Table';
+  final String title = 'WEMO APP';
  
   @override
   WemoAppState createState() => WemoAppState();
@@ -18,12 +18,10 @@ class WemoAppState extends State<WemoApp> {
       new GlobalKey<RefreshIndicatorState>();
 
   List<Client> _clients;
-  GlobalKey<ScaffoldState> _scaffoldKey;
   @override
   void initState() {
     super.initState();
     _clients = [];
-    _scaffoldKey = GlobalKey();
     WidgetsBinding.instance
         .addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
     _getClients();
@@ -43,7 +41,7 @@ class WemoAppState extends State<WemoApp> {
     });
   }
 
-  SingleChildScrollView _dataBody() {
+  SingleChildScrollView _data() {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: SingleChildScrollView(
@@ -70,17 +68,16 @@ class WemoAppState extends State<WemoApp> {
                   ),
                   DataCell(
                     Text(
-                      client.addR.toUpperCase(),
+                      client.addR,
                     )
                   ),
                   DataCell(
                     Text(
-                      client.numPhone.toUpperCase(),
+                      client.numPhone,
                     )
                   )
                 ]),
-              )
-              .toList(),
+              ).toList(),
         ),
       ),
     );
@@ -90,7 +87,6 @@ class WemoAppState extends State<WemoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("WEMO APP"),
         actions: <Widget>[
@@ -109,7 +105,7 @@ class WemoAppState extends State<WemoApp> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: _dataBody(),
+              child: _data(),
             ),
           ],
         ),
